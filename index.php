@@ -48,6 +48,13 @@ $app->get('/auth', function (Request $request, Response $response, $args) {
     return $response;
 });
 
+$app->get('/info', function (Request $request, Response $response, $args) {
+    $response->getBody()->write(
+        "  Hello world!" 
+    );
+    return $response;
+});
+
 
 
 
