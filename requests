@@ -1,1 +1,0 @@
-curl GET https://api.codechef.com/oauth/authorize?response_type=code&state=xysbshas&client_id=6a851fc4b68c40650d75f84b3f60986c&redirect_uri=http://localhost:8000/

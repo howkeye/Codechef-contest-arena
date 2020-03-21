@@ -1,0 +1,29 @@
+{% extends "profiles/base.html" %}
+{% block content %}
+<div>
+	<center>
+<h1> BoostYourCP </h1>
+
+
+<img src="http://2020.almafiesta.com/hosted_files/raja.gif" width=60% height=60%>
+<h4> Register with us and then we will be sending you calender file (via mails ) for coding event happening on Codechef and Codeforces regularly.
+	Other features coming soon.
+</h4>
+<a href="" class="btn btn-info" role="button">Login  </a> 
+<a href="{% url 'register' %}" class="btn btn-info" role="button"> Register  </a>
+<br>
+<br>
+<h3> Our API's</h3>
+Api access to codechef upcoming contests: https://boostyourcp.herokuapp.com/api_codechef  <br>
+Api access to codeforce upcoming contests: https://boostyourcp.herokuapp.com/api_codeforce  
+</center>
+
+
+<br>
+<h1><hr> </h1>
+
+<center style="color: black;"> Developed by Rajat Kumar, Gaurav Gupta and Yash Raghuvanshi </center>
+</div>
+{% endblock content %}
+
+
