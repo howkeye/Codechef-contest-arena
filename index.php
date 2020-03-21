@@ -2,7 +2,7 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 include 'functions/auth.php';
-
+main();
 require 'vendor/autoload.php';
 
 $app = new \Slim\App([
