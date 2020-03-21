@@ -2,7 +2,7 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 include 'functions/auth.php';
-main();
+//main();
 require 'vendor/autoload.php';
 
 $app = new \Slim\App([
@@ -44,8 +44,8 @@ $app->get('/', function (Request $request, Response $response, $args) {
 
 $app->get('/auth', function (Request $request, Response $response, $args) {
     main();
-    //$response->getBody()->write("Hello world!");
-    //return $response;
+    $response->getBody()->write("Hello world!");
+    return $response;
 });
 
 
