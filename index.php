@@ -28,14 +28,14 @@ $container['view'] = function ($container) {
 };
 
 
-$app->get('/hello/{name}', function ($request, $response, $args) {
-    return $this->view->render($response, 'base.html', [
+$app->get('/', function ($request, $response, $args) {
+    return $this->view->render($response, 'home.twig', [
         'name' => $args['name']
     ]);
 })->setName('profile');
 
 
-$app->get('/', function (Request $request, Response $response, $args) {
+$app->get('/home', function (Request $request, Response $response, $args) {
     $response->getBody()->write(
         "  Hello world!" 
     );
