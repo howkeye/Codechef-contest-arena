@@ -69,7 +69,7 @@ class __TwigTemplate_b1d1c75967959cbb40183909a3c08f1ac5855f530b54171d01ff0e99172
 </nav>
 
 
-<div class=\"jumbotron\">
+<div class=\"jumbotron\" style=\"position:fixed;bottom:0px;width:100%; margin:0px; padding:2rem;\">
 
 
   
