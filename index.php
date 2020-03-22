@@ -35,13 +35,6 @@ $app->get('/', function ($request, $response, $args) {
 })->setName('profile');
 
 
-$app->get('/home', function (Request $request, Response $response, $args) {
-    $response->getBody()->write(
-        "  Hello world!" 
-    );
-    return $response;
-});
-
 $app->get('/auth', function (Request $request, Response $response, $args) {
     main();
     $response->getBody()->write("Hello world!");
@@ -50,10 +43,11 @@ $app->get('/auth', function (Request $request, Response $response, $args) {
 
 $app->get('/info', function (Request $request, Response $response, $args) {
     $response->getBody()->write(
-        "  Hello world!" 
+        "  Hello world!" +$_GET['code']+$_GET['state']
     );
     return $response;
 });
+
 
 
 

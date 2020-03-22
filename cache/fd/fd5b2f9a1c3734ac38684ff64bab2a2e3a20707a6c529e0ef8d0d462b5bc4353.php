@@ -40,7 +40,7 @@ class __TwigTemplate_b1d1c75967959cbb40183909a3c08f1ac5855f530b54171d01ff0e99172
 <head> 
     <meta charset=\"utf-8\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"> 
-    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/solar/bootstrap.min.css\"  >  
+    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/sketchy/bootstrap.min.css\"  >  
     <title>Contest Arena</title> 
 </head>
 
@@ -67,9 +67,21 @@ class __TwigTemplate_b1d1c75967959cbb40183909a3c08f1ac5855f530b54171d01ff0e99172
     </ul>   
   </div>
 </nav>
+<br>
 
 
-<div class=\"jumbotron\" style=\"position:fixed;bottom:0px;width:100%; margin:0px; padding:2rem;\">
+<center>
+
+<h1> Welcome To Codechef Contest arena !!!!<h1>
+<div class=\"row\" style=\"position:fixed;bottom:60%;    width: 100%;\">
+<div class=\" col-md-5\"></div>
+<div class=\" col-md-2\">
+ <a href=\"auth\"><button type=\"button\" class=\"btn btn-primary btn-lg\" ><h1>Enter</h1></button></a> </div>
+<div class=\" col-md-5\"></div>
+</div>
+</center> 
+
+<div class=\"jumbotron\" style=\"position:fixed;bottom:0px;width:100%; margin:0px;\">
 
 
   
