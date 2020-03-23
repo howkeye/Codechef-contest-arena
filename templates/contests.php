@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/sketchy/bootstrap.min.css"  >  
-    <link rel="stylesheet" href="templates/autocomplete/main.css">
+    <link rel="stylesheet" href="autocomplete/main.css">
     
 
     <title>Contest Arena</title> 
@@ -59,6 +59,78 @@
   <center>Made with love by Rajat (<a target='_blank' href="https://github.com/howkeye">@howkeye</a>) </center>
   </div>
   </header>
+
+</body>
+</html>
+
+
+<?php
+session_start();
+if(! isset($_SESSION['access_key'] ) )
+header("Location: ../index.php");
+
+include '../functions/auth.php';
+function make_contest_problem_api_request2(){
+    $oauth_details['access_token']= $_SESSION['access_token']; 
+    $problem_code = "SALARY";
+    $contest_code = "PRACTICE";
+    $path = "https://api.codechef.com/contests"; //.$contest_code."/problems/".$problem_code;
+    $response = make_api_request($oauth_details, $path);
+    
+    return $response;
+}
+
+$data_json= json_decode( make_contest_problem_api_request2()); 
+
+if($data_json->status=="error"){
+  main(0);
+  $data_json= json_decode( make_contest_problem_api_request2()); 
+}
+
+echo " AHGVAB  ".ech.$data_json->status."<br>";
+
+$contests=$data_json->result->data->content->contestList;
+$arr= array();
+for ($x = 0; $x <count($contests,COUNT_NORMAL); $x++) {
+    $contest_name= $contests[$x]->name;
+    $contest_code= $contests[$x]->code;
+   //  var_dump($contest_name);
+    // var_dump($contest_code);  
+     
+   // array_push($arr, $contest_name." (".$contest_code.")");
+    array_push($arr,$contest_code);
+
+} 
+for ($x = 0; $x <count($contests,COUNT_NORMAL); $x++) {
+  $contest_name= $contests[$x]->name;
+  $contest_code= $contests[$x]->code;
+ //  var_dump($contest_name);
+  // var_dump($contest_code);
+  
+   
+  //array_push($arr, $contest_name." (".$contest_code.")");
+  array_push($arr,$contest_code);
+
+} 
+
+$json_data=json_encode($arr);
+file_put_contents('myfile.json', $json_data);
+//echo ($json_data);
+
+?>
+
+<html>
+<body>
+<p id="demo"></p>
+<script>
+ //responseObj = readJsonFromUrl('myfile.json');
+ //var x=['ffftest']
+
+
+ var contests= <?php echo ($json_data);?>;
+
+
+</script>
 
 </body>
 </html>
@@ -162,8 +234,9 @@ function autocomplete(inp, arr) {
 }
 
 /*An array containing all the country names in the world:*/
-var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+//var countries = ["rajat","shruti","minal","sumit"];
+
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-autocomplete(document.getElementById("myInput"), countries);
+autocomplete(document.getElementById("myInput"), contests);
 </script>

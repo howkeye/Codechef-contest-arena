@@ -40,7 +40,16 @@
 <div class="row" style="position:fixed;bottom:60%;    width: 100%;">
 <div class=" col-md-5"></div>
 <div class=" col-md-2">
- <a href="auth"><button type="button" class="btn btn-primary btn-lg" ><h1>Enter</h1></button></a> </div>
+{% if flag  == 0 %}
+
+
+ <a href="info.php"><button type="button" class="btn btn-primary btn-lg" ><h1>Enter</h1></button></a> 
+ {% endif %}
+{% if flag == 1 %}
+ <a href="templates/contests.php"><button type="button" class="btn btn-primary btn-lg" ><h1>Enter</h1></button></a>
+{% endif %}
+
+ </div>
 <div class=" col-md-5"></div>
 </div>
 </center> 

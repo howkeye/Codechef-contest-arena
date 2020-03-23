@@ -1,4 +1,7 @@
 <?php
+session_start();
+
+
 
 function take_user_to_codechef_permissions_page($config){
 
@@ -68,20 +71,23 @@ function make_contest_problem_api_request($config,$oauth_details){
     return $response;
 }
 
-function main(){
+function main($type){
 
+        
     $config = array('client_id'=> '6a851fc4b68c40650d75f84b3f60986c',
-        'client_secret' => 'af3dfdd8529a5e4f7e170bdbdce4c3a7',
-        'api_endpoint'=> 'https://api.codechef.com/',
-        'authorization_code_endpoint'=> 'https://api.codechef.com/oauth/authorize',
-        'access_token_endpoint'=> 'https://api.codechef.com/oauth/token',
-        'redirect_uri'=> 'http://localhost:8000/info.php',
-        'website_base_uri' => 'http://localhost:8000');
-
+    'client_secret' => 'af3dfdd8529a5e4f7e170bdbdce4c3a7',
+    'api_endpoint'=> 'https://api.codechef.com/',
+    'authorization_code_endpoint'=> 'https://api.codechef.com/oauth/authorize',
+    'access_token_endpoint'=> 'https://api.codechef.com/oauth/token',
+    'redirect_uri'=> 'http://localhost:8000/info.php',
+    'website_base_uri' => 'http://localhost:8000');
+   
     $oauth_details = array('authorization_code' => '',
         'access_token' => '',
         'refresh_token' => '');
     
+
+    if($type==1){    
     if(isset($_GET['code'])){
         $oauth_details['authorization_code'] = $_GET['code'];
        $oauth_details = generate_access_token_first_time($config, $oauth_details);
@@ -89,11 +95,18 @@ function main(){
      echo $oauth_details['access_token'];
 
        $response = make_contest_problem_api_request($config, $oauth_details);
-        //$oauth_details = generate_access_token_from_refresh_token($config, $oauth_details);         //use this if you want to generate access_token from refresh_token
+      
        echo $response;
     }
    else{
         take_user_to_codechef_permissions_page($config);
+    } 
+    }
+    else 
+    {
+        $oauth_details = generate_access_token_from_refresh_token($config, $oauth_details); 
+        echo "access_token: ";
+        echo $oauth_details['access_token'];        
     }
 }
 

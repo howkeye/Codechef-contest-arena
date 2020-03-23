@@ -76,7 +76,24 @@ class __TwigTemplate_b1d1c75967959cbb40183909a3c08f1ac5855f530b54171d01ff0e99172
 <div class=\"row\" style=\"position:fixed;bottom:60%;    width: 100%;\">
 <div class=\" col-md-5\"></div>
 <div class=\" col-md-2\">
- <a href=\"auth\"><button type=\"button\" class=\"btn btn-primary btn-lg\" ><h1>Enter</h1></button></a> </div>
+";
+        // line 43
+        if ((($context["flag"] ?? null) == 0)) {
+            // line 44
+            echo "
+
+ <a href=\"info.php\"><button type=\"button\" class=\"btn btn-primary btn-lg\" ><h1>Enter</h1></button></a> 
+ ";
+        }
+        // line 48
+        if ((($context["flag"] ?? null) == 1)) {
+            // line 49
+            echo " <a href=\"templates/contests.php\"><button type=\"button\" class=\"btn btn-primary btn-lg\" ><h1>Enter</h1></button></a>
+";
+        }
+        // line 51
+        echo "
+ </div>
 <div class=\" col-md-5\"></div>
 </div>
 </center> 
@@ -100,9 +117,14 @@ class __TwigTemplate_b1d1c75967959cbb40183909a3c08f1ac5855f530b54171d01ff0e99172
         return "home.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  37 => 1,);
+        return array (  95 => 51,  91 => 49,  89 => 48,  83 => 44,  81 => 43,  37 => 1,);
     }
 
     public function getSourceContext()

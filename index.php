@@ -1,7 +1,8 @@
 <?php
+session_start();
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-include 'functions/auth.php';
+include 'function/auth.php';
 //main();
 require 'vendor/autoload.php';
 
@@ -28,17 +29,22 @@ $container['view'] = function ($container) {
 };
 
 
-$app->get('/', function ($request, $response, $args) {
+$app->get('/', function ($request, $response) {
+    if(isset($_SESSION['access_token']))
+       $flag=1;
+    else $flag=0;
     return $this->view->render($response, 'home.twig', [
-        'name' => $args['name']
+        'flag'=> $flag,
     ]);
 })->setName('profile');
 
 
 $app->get('/auth', function (Request $request, Response $response, $args) {
-    main();
-    $response->getBody()->write("Hello world!");
-    return $response;
+    main(1);
+  //  main(0);
+    //$response->getBody()->write("Hello world!");
+    return $app->redirect('/con', 301);
+
 });
 
 $app->get('/info', function (Request $request, Response $response, $args) {
