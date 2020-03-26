@@ -1,67 +1,41 @@
 
-<!DOCTYPE html>
-<html>
-<head> 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/sketchy/bootstrap.min.css"  >  
-    <title>Contest Arena</title> 
-</head>
+{% extends "base.twig" %}
+{% block content %}
 
 
-<body  class="page-bootswatch">
 
 
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="/"><img src="/templates/images/logo.png"  alt="Logo" width="130">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Codechef Contest Arena</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-
-  <div class="collapse navbar-collapse" id="navbarColor01">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/aboutus">About Us</a>
-      </li>
-    </ul>   
-  </div>
-</nav>
-<br>
-
-
+<div class="cantainer container p-3 my-6 border" style="margin-top:10%;">
 <center>
+<h1><p> Welcome to Codechef Contest Arena !!!</p><h1>
 
-<h1> Welcome To Codechef Contest arena !!!!<h1>
-<div class="row" style="position:fixed;bottom:60%;    width: 100%;">
-<div class=" col-md-5"></div>
-<div class=" col-md-2">
+<div class="row" style="    width: 100%;">
+<div class=" col-md-4"></div>
+<div class=" col-md-3">
 {% if flag  == 0 %}
 
 
- <a href="info.php"><button type="button" class="btn btn-primary btn-lg" ><h1>Enter</h1></button></a> 
+ <a href="info.php">
+    <button type="button" class="btn btn-primary btn-lg" >
+        <span class="spinner-grow spinner-grow-sm"></span>
+        Enter
+    </button>
+ </a> 
+
  {% endif %}
 {% if flag == 1 %}
- <a href="templates/contests.php"><button type="button" class="btn btn-primary btn-lg" ><h1>Enter</h1></button></a>
+ <a href="templates/contests.php">
+    <button type="button" class="btn btn-primary btn-lg" >
+        <span class="spinner-grow spinner-grow-sm"></span>
+        Enter
+    </button>
+ </a> 
 {% endif %}
-
+{{ flag }}
  </div>
 <div class=" col-md-5"></div>
 </div>
-</center> 
-
-<div class="jumbotron" style="position:fixed;bottom:0px;width:100%; margin:0px;">
-
-
-  
-  <center>Made with love by Rajat (<a target='_blank' href="https://github.com/howkeye">@howkeye</a>) </center>
-  </div>
-  </header>
-
-</body>
-</html>
+</center>
+</div> 
+{% endblock %}
 

@@ -4,7 +4,7 @@
 <head> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/sketchy/bootstrap.min.css"  >  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/flatly/bootstrap.min.css"  >  
     <link rel="stylesheet" href="autocomplete/main.css">
     
 
@@ -36,17 +36,17 @@
 </nav>
 <br>
 <div class="container p-3 my-3 border">
-<center><h2> Enter Contest code \ problem code:<h2>  </center>
+<center><h2> Enter Contest code \ name:<h2>  </center>
 
 <div class="row" >
 <div class=" col-md-5"></div>
 <div class=" col-md-2">
 
-<form  class="form-inline my-2 my-lg-0" autocomplete="off" action="/action_page.php">
+<form  class="form-inline my-2 my-lg-0" autocomplete="off" action="/problems">
   <div class="autocomplete" style="width:300px;">
     <input class="form-control form-control-lg" id="myInput" type="text" name="myCountry" placeholder="Country">
     </div>
-  <button class="btn btn-secondary btn-lg" type="submit">Submit</button>
+  <button class="btn btn-primary btn-lg" type="submit">Submit</button>
   
 </form>
 </div>
@@ -66,8 +66,11 @@
 
 <?php
 session_start();
-if(! isset($_SESSION['access_key'] ) )
+if(isset($_SESSION['access_key'] ) )
 header("Location: ../index.php");
+
+echo "YES";
+//
 
 include '../functions/auth.php';
 function make_contest_problem_api_request2(){

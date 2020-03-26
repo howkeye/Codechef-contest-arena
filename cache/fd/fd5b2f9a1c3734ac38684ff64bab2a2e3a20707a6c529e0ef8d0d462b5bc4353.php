@@ -24,91 +24,74 @@ class __TwigTemplate_b1d1c75967959cbb40183909a3c08f1ac5855f530b54171d01ff0e99172
 
         $this->source = $this->getSourceContext();
 
-        $this->parent = false;
-
         $this->blocks = [
+            'content' => [$this, 'block_content'],
         ];
+    }
+
+    protected function doGetParent(array $context)
+    {
+        // line 2
+        return "base.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 1
+        $this->parent = $this->loadTemplate("base.twig", "home.twig", 2);
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    public function block_content($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        // line 4
         echo "
-<!DOCTYPE html>
-<html>
-<head> 
-    <meta charset=\"utf-8\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"> 
-    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/sketchy/bootstrap.min.css\"  >  
-    <title>Contest Arena</title> 
-</head>
 
 
-<body  class=\"page-bootswatch\">
 
-
-<header>
-    <nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">
-  <a class=\"navbar-brand\" href=\"/\"><img src=\"/templates/images/logo.png\"  alt=\"Logo\" width=\"130\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Codechef Contest Arena</a>
-  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-    <span class=\"navbar-toggler-icon\"></span>
-  </button>
-
-
-  <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
-    <ul class=\"navbar-nav mr-auto\">
-      <li class=\"nav-item active\">
-        <a class=\"nav-link\" href=\"/\">Home <span class=\"sr-only\">(current)</span></a>
-      </li>
-      <li class=\"nav-item\">
-        <a class=\"nav-link\" href=\"/aboutus\">About Us</a>
-      </li>
-    </ul>   
-  </div>
-</nav>
-<br>
-
-
+<div class=\"cantainer container p-3 my-6 border\" style=\"margin-top:10%;\">
 <center>
+<h1><p> Welcome to Codechef Contest Arena !!!</p><h1>
 
-<h1> Welcome To Codechef Contest arena !!!!<h1>
-<div class=\"row\" style=\"position:fixed;bottom:60%;    width: 100%;\">
-<div class=\" col-md-5\"></div>
-<div class=\" col-md-2\">
+<div class=\"row\" style=\"    width: 100%;\">
+<div class=\" col-md-4\"></div>
+<div class=\" col-md-3\">
 ";
-        // line 43
+        // line 15
         if ((($context["flag"] ?? null) == 0)) {
-            // line 44
+            // line 16
             echo "
 
- <a href=\"info.php\"><button type=\"button\" class=\"btn btn-primary btn-lg\" ><h1>Enter</h1></button></a> 
+ <a href=\"info.php\">
+    <button type=\"button\" class=\"btn btn-primary btn-lg\" >
+        <span class=\"spinner-grow spinner-grow-sm\"></span>
+        Enter
+    </button>
+ </a> 
+
  ";
         }
-        // line 48
+        // line 26
         if ((($context["flag"] ?? null) == 1)) {
-            // line 49
-            echo " <a href=\"templates/contests.php\"><button type=\"button\" class=\"btn btn-primary btn-lg\" ><h1>Enter</h1></button></a>
+            // line 27
+            echo " <a href=\"templates/contests.php\">
+    <button type=\"button\" class=\"btn btn-primary btn-lg\" >
+        <span class=\"spinner-grow spinner-grow-sm\"></span>
+        Enter
+    </button>
+ </a> 
 ";
         }
-        // line 51
+        // line 34
+        echo twig_escape_filter($this->env, ($context["flag"] ?? null), "html", null, true);
         echo "
  </div>
 <div class=\" col-md-5\"></div>
 </div>
-</center> 
-
-<div class=\"jumbotron\" style=\"position:fixed;bottom:0px;width:100%; margin:0px;\">
-
-
-  
-  <center>Made with love by Rajat (<a target='_blank' href=\"https://github.com/howkeye\">@howkeye</a>) </center>
-  </div>
-  </header>
-
-</body>
-</html>
-
+</center>
+</div> 
 ";
     }
 
@@ -124,7 +107,7 @@ class __TwigTemplate_b1d1c75967959cbb40183909a3c08f1ac5855f530b54171d01ff0e99172
 
     public function getDebugInfo()
     {
-        return array (  95 => 51,  91 => 49,  89 => 48,  83 => 44,  81 => 43,  37 => 1,);
+        return array (  88 => 34,  79 => 27,  77 => 26,  65 => 16,  63 => 15,  50 => 4,  46 => 3,  35 => 2,);
     }
 
     public function getSourceContext()

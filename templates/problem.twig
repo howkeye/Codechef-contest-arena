@@ -1,0 +1,83 @@
+
+
+{% extends "base.twig" %}
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+<!-- Start simple MDE -->
+<script>
+    var simplemde = new SimpleMDE({ 
+        element: document.getElementById("markdown") 
+    });
+</script>
+
+ 
+ <div class="cantainer container p-3 my-6 border" >
+ <center><h3><b> {{ wrap.problem  }}</b> </h3> </center>
+<div class="markdown">
+{{  wrap.problemStat|raw }}
+</div>
+
+
+<br>
+<br>
+<hr>
+
+
+<form>
+  <fieldset>
+   <h3> <legend>Run/Submit Your Code </legend></h3>
+   
+  
+<form action="" method="POST">
+    <div class="form-group">
+    <label for="language"> Language:</label> 
+      <select class="custom-select" name="language" style="width:20%">
+      <option selected="">c++14</option>
+     <br>
+    </select>
+
+      <label for="Code"></label>
+
+      <textarea class="form-control" name="Code" id="Code" rows="15" spellcheck="true"></textarea>
+      <br>
+      <div class="row">
+       <div class="col-md-5">
+        <label for="input">Input values</label>
+
+       <textarea class="form-control" id="input" name="input" rows="5" spellcheck="true"></textarea>         
+        </div>
+       
+       <div class="col-md-2">
+        <button type="submit" class="btn btn-primary" Name="run">Run</button>
+
+           <button type="submit" class="btn btn-primary" Name="submit">Submit</button>
+           </form>
+        </div>
+      
+      
+        
+
+        <div class="col-md-5">
+          Output here:<br>
+        <div style=" border: 4px dotted black; ">
+          
+           
+          {{ wrap.output |raw}}
+       </div>
+         
+        </div>
+        </div>
+       
+       <form action="" method="POST">
+       
+
+</diV>
+
+
+
+{% endblock %}
+

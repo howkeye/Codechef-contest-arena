@@ -31,7 +31,7 @@ function generate_access_token_from_refresh_token($config, $oauth_details){
         'client_secret' => $config['client_secret']);
     $response = json_decode(make_curl_request($config['access_token_endpoint'], $oauth_config), true);
     $result = $response['result']['data'];
-   // $oauth_details['access_token']=" value not changed";
+    $oauth_details['access_token']=" value not changed";
     $oauth_details['access_token'] = $result['access_token'];
     $oauth_details['refresh_token'] = $result['refresh_token'];
     $oauth_details['scope'] = $result['scope'];
@@ -92,24 +92,30 @@ function main($type){
         $oauth_details['authorization_code'] = $_GET['code'];
        $oauth_details = generate_access_token_first_time($config, $oauth_details);
      echo "access_token: ";
-     echo $oauth_details['access_token'];
+  //   echo $oauth_details['access_token'];
      $_SESSION['access_token']=$oauth_details['access_token'];
+     $_SESSION['refresh_token']=$oauth_details['refresh_token'];
          echo $_SESSION['access_token'];
+         echo "<br>refresh Token: ";
+         echo $_SESSION['refresh_token']." <br>";
       // $response = make_contest_problem_api_request($config, $oauth_details);
       
       // echo $response;
-      header("Location: /templates/contests.php");
+     header("Location: /templates/contests.php");
     }
    else{
         take_user_to_codechef_permissions_page($config);
     } 
     }
     else 
-    {
+    {   $oauth_details['access_token']=$_SESSION['access_token'];
+        $oauth_details['refresh_token']=$_SESSION['refresh_token'];
         $oauth_details = generate_access_token_from_refresh_token($config, $oauth_details); 
-        echo "access_token: ";
-        echo $oauth_details['access_token'];     
-        $_SESSION['access_token']=$oauth_details['access_token'];   
+        $_SESSION['access_token']=$oauth_details['access_token'];
+        $_SESSION['refresh_token']=$oauth_details['refresh_token'];
+        echo "access_token ".$_SESSION['access_token'];
+        echo "<br>refresh Token: ";
+        echo $_SESSION['refresh_token'];
     }
 }
 

@@ -29,6 +29,10 @@ class ComposerStaticInit1f62f7f278f00a26d9ac39742708750d
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
         ),
+        'M' => 
+        array (
+            'Michelf\\' => 8,
+        ),
         'I' => 
         array (
             'Interop\\Container\\' => 18,
@@ -67,6 +71,10 @@ class ComposerStaticInit1f62f7f278f00a26d9ac39742708750d
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'Michelf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/michelf/php-markdown/Michelf',
         ),
         'Interop\\Container\\' => 
         array (
