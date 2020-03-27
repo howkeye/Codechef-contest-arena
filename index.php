@@ -13,7 +13,7 @@ use Michelf\MarkdownExtra;
 
 //require __DIR__.'/functions/auth.php';
 include __DIR__.'/functions/api.php';
-include __DIR__.'/latexparser.php';
+//include __DIR__.'/latexparser.php';
 //include __DIR__.'/templates/problem.php';
 //main();
 require 'vendor/autoload.php';
@@ -121,13 +121,25 @@ $app->get('/problem/{conCode}/{probCode}', function ($request, $response, array 
    // echo " ============ <br> =======";
   $problemStatBody=MarkdownExtra::defaultTransform($problemStat->body);  
   
- // var_dump( $problemStat->Body );
-    
+ //var_dump( $problemStat->Body );
+ $body['language']="ajhgvab";
  $body['language']=$_GET['language'];
- $body['sourceCode']=$_GET['sourcecode'];
+ $body['sourceCode']=$_GET['Code'];
  $body['input']=$_GET['input'];
- //$runner_output=run_code($body);
- //var_dump($runner_output);
+ echo $_GET['language']." AHGAV ";
+ $runner_output=run_code($body);
+ //var_dump($body);
+ 
+
+ $link=json_decode($runner_output);
+ $link=$link->result->data->link;
+ echo "<br> link is: " .$link."<br>";
+ $url='/ide/status?link='.$link;
+ var_dump($url);
+ $submission=get_json($url); 
+
+ $submission=$submission->result->data;
+ var_dump( $submission  );
 
          
          
@@ -135,17 +147,18 @@ $app->get('/problem/{conCode}/{probCode}', function ($request, $response, array 
          $output=" Can't Submit Your code feature not implemented";
          
          $wrap= [
-            '#type' => 'inline_template',
             'contest'=> $args['conCode'],
             'problem'=> $problemStat->problemName,
             'problemStat'=>$problemStatBody,
             'output'=>$output,
+            'body'=>$body,
+            'result'=>$submission
             
          ];
 
  //problem($wrap);
-  return $this->view->render($response, 'problem.twig', [
-   'wrap'=> $wrap,]);  
+ return $this->view->render($response, 'problem.twig', [
+   'wrap'=> $wrap,]);   
 
   
 

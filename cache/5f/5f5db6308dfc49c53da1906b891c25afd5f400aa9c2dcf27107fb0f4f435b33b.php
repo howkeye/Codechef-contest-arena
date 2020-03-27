@@ -77,7 +77,7 @@ class __TwigTemplate_c3e0b3736797e4641f749a709cbfa2b3bd5e9c96cfc2ef0c8cf4abba9dd
         // line 40
         $this->displayBlock('content', $context, $blocks);
         // line 42
-        echo "
+        echo "<!--
 
 <div class=\"jumbotron\" style=\"position:fixed;bottom:0px;width:100%; margin:0px; padding:0px;\">
 
@@ -90,7 +90,7 @@ class __TwigTemplate_c3e0b3736797e4641f749a709cbfa2b3bd5e9c96cfc2ef0c8cf4abba9dd
 </body>
 </html>
 
-";
+-->";
     }
 
     // line 40

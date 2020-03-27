@@ -42,14 +42,24 @@ function generate_access_token_from_refresh_token($config, $oauth_details){
 
 function make_api_request($oauth_config, $path){
     $headers[] = 'Authorization: Bearer ' . $oauth_config['access_token'];
+   // $headers[] = ' link: '.$oauth_config['link'];
+    var_dump($headers);
     return make_curl_request($path, false, $headers);
 }
 
 function make_api_post_request($oauth_config, $path,$BODY){
     $headers[] = 'Authorization: Bearer ' . $oauth_config['access_token'];
-    $body[]=$BODY;
+     var_dump( $headers);
+     //$body=[ 'language'=>"c++14",
+        //  'input'=>"12339", 'sourceCode'=>"#include <bits/stdc++.h>"];
+        $body=['language'=>$BODY['language'],
+          'input'=>$BODY['input'],
+           'sourceCode'=>$BODY['sourceCode']
+        ];
     return make_curl_request($path, $body, $headers);
 }
+
+
 
 
 function make_curl_request($url, $post = FALSE, $headers = array())
@@ -63,6 +73,7 @@ function make_curl_request($url, $post = FALSE, $headers = array())
     }
 
     $headers[] = 'content-Type: application/json';
+    //var_dump($headers);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     $response = curl_exec($ch);
     return $response;
