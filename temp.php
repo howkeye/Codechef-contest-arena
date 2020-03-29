@@ -33,7 +33,9 @@ $container = $app->getContainer();
 
 $container['view'] = function ($container) {
 
-    $view = new \Slim\Views\Twig('templates' );
+    $view = new \Slim\Views\Twig('templates', [
+        'cache' => 'cache'
+    ]);
      
     
 
@@ -85,20 +87,11 @@ $app->get('/logout',function(Request $request, Response $response) {
 
 $app->get('/problems', function ($request, $response) {
     $contestCode=$_GET['contestCode'];
-  //var_dump($_GET['contestCode']);
-  //  ;
     $contestCode=decode_contest_code($contestCode);
-    //var_dump($contestCode);
-   
-
     $contest_data= get_json("/contests/". $contestCode);
- //   echo $_GET['contestcode'];
-    // var_dump(json_encode($contest_data));
     
-    $problems=$contest_data->result->data->content->problemsList;
-  //  var_dump($problems);
     $isParent=$contest_data->result->data->content->isParent;
-   // echo "<br>is parent: ".$isParent;  
+     
     if ($isParent==1){
         $wrap= [
             'contest'=> $contest_data->result->data->content->name,
@@ -106,53 +99,26 @@ $app->get('/problems', function ($request, $response) {
          ];
     return $this->view->render($response, 'subcontest.twig', [
         'wrap'=> $wrap, 
-        
+      
     ]); 
 
     }
+   
     $problems=$contest_data->result->data->content->problemsList;
-    
-    if($problems==NULL) {
-      echo '<script type="text/javascript">
-    alert(" Future/invalid  Contest !! ")
-    window.location= "/"</script>';   
-      var_dump($problems);
-    }
-    echo "<br> checking ============------------<br>";
-    var_dump($problems);
-    
-     for ($i=0;$i<count($problems);$i++){
-       
-        echo "<br>/contests/". $contestCode."/problems/".$problems->problemCode;
-        echo "<br><br>";
-       // var_dump($problems);
+      for ($i=0;$i<count($problems);$i++){
 
-         
-     //   $problem_data= get_json("/contests/". $contestCode."/problems/".$problems[$i]->problemCode."/");
-       // var_dump($problem_data);
+        $problem_data= get_json("/contests/". $contestCode."/problems/".$problems->problemCode."/");
         $problemName=$problem_data->result->data->content->problemName;
-        $problemNameCode [$i]['0']=$problemName;
-        $problemNameCode[$i]['1']=$problems[$i]->problemCode;
-        $problemNameCode[$i]['2']=$problems[$i]->accuracy;
-        $problemNameCode[$i]['3']=$problems[$i]->successfulSubmissions;
-
-
+        $problemNames []=$problemName;
       }
-   // var_dump($problemNameCode);    
+      var_dump($problemNames);
 
-    $submission_data= get_json("/submissions/?contestCode=". $contestCode);
-    
-    $d=strtotime($contest_data->result->data->content->endDate);
-    
-    
+
+   //  echo var_dump($problems[0]);
   
          $wrap= [
-            'contest'=> $contestCode,
-            'contestName'=>$contest_data->result->data->content->name,
-            'endDate'=>$d,
-            'problems'=> $problemNameCode,
-            'submission'=>$submission_data->result->data->content,
-            
+            'contest'=> $contest_data->result->data->content->name,
+            'problems'=> $problems
          ];
     return $this->view->render($response, 'problems.twig', [
         'wrap'=> $wrap, 
@@ -162,7 +128,7 @@ $app->get('/problems', function ($request, $response) {
 
   
 
-})->setName('Problems');
+})->setName('Problems'.' | '.$_GET['contestcode']);
 
 
 $app->get('/problem/{conCode}/{probCode}', function ($request, $response, array $args) {

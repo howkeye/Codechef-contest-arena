@@ -3,28 +3,111 @@
 {% block content %}
 <div class="cantainer container p-3 my-3 border">
 <div class="row">
-<div class='col-md-3'></div>
-<div class='col-md-6 title'>
-<center> <h2> {{wrap.contest}} </h2>  <center>
-<div class="list-group">
- <ul class="list-group">
- 
-    
-  <h3>
+<div class='col-md-1'></div>
+
+<div class='col-md-7 title'>
+<div class="cantainer container p-3 my-3 border">
+<center> <h4> {{wrap.contestName}} </h4>  <center>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ProbName</th>
+      <th scope="col">Code</th>
+      <th scope="col">accuracy</th>
+      <th scope="col">Submissions</th>
+    </tr>
+  </thead>
+  <tbody>
 
 {% for problem in wrap.problems %}
-  <a href="/problem/{{ wrap.contest }}/{{ problem.problemCode }}" class="list-group-item d-flex justify-content-between align-items-center">
-   {{problem.problemCode}}
-   <span class="badge badge-primary badge-pill">{{ problem.accuracy }}%</span>
-   <span class="badge badge-primary badge">{{ problem.successfulSubmissions }}</span>
-  </a>
+
+   <tr class="table-success">
+      <th scope="row">  <a href="/problem/{{ wrap.contest }}/{{ problem.1 }}" class="list-group-item d-flex justify-content-between align-items-center">
+   {{problem.0}} </th>
+      <td> {{problem.1}}</td> </a>
+      <td>{{ problem.2 }}</td>
+      <td>{{ problem.3 }} {{ wrap.contest }} </td>
+    </tr>
  {% endfor %}  
- </h3> 
+ 
+ </tbody>
+ </table>
+</div>
 
 </div>
+<div class='col-md-4'>
+<div class="card border-success mb-3" style="max-width: 20rem;">
+  <div class="card-header">Contest Ends In</div>
+  <div class="card-body">
+    <h4 class="card-title"><p id="demo"></p></h4>
+    
+  </div>
 </div>
-<div class='col-md-3'></div>
 
+
+
+<div class="list-group" style="margin-top:10%;">
+          <div class="list-group-item list-group-item-action active">
+    Recent Activity
+  </div>
+{% for sub in wrap.submission %}
+  <div class="list-group-item list-group-item-action">
+    <div class="row">
+      <div class="col-md-4">
+      {{ sub.username   }}
+      </div>
+
+      <div class="col-md-4">
+      {{ sub.score   }}
+      </div>
+
+      <div class="col-md-4">
+      {{ sub.result   }}
+      </div>     
+    </diV> 
+  </div>
+{% endfor %}
+  
+
+
+</div> 
+
+
+<script>
+// Set the date we're counting down to
+var countDownDate = {{ wrap.endDate }};
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate  - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  
+  document.getElementById("demo").innerHTML = days + "D " + hours + "H "
+  + minutes + "M " + seconds + "S ";
+  
+
+  
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "Contest Ended";
+   
+  }
+}, 1000);
+</script>
 
 
 {% endblock %}

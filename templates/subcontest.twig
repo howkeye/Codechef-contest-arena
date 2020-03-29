@@ -1,0 +1,28 @@
+
+{% extends "base.twig" %}
+{% block content %}
+<div class="cantainer container p-3 my-3 border">
+<div class="row">
+<div class='col-md-3'></div>
+<div class='col-md-6 title'>
+<center> <h2> {{wrap.contest}} </h2>  <center>
+<div class="list-group">
+ <ul class="list-group">
+ 
+    
+  <h3>
+
+{% for t in wrap.subcontests %}
+  <a href="/problems?contestCode={{ t }}" class="list-group-item d-flex justify-content-between align-items-center">
+   {{ t }}
+ 
+{% endfor %}  
+</h3> 
+</div>
+</div>
+<div class='col-md-3'></div>
+
+
+
+{% endblock %}
+

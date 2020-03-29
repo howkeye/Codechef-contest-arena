@@ -44,7 +44,7 @@
 
 <form  class="form-inline my-2 my-lg-0" autocomplete="off" action="/problems">
   <div class="autocomplete" style="width:300px;">
-    <input class="form-control form-control-lg" id="myInput" type="text" name="myCountry" placeholder="Country">
+    <input class="form-control form-control-lg" id="myInput" type="text" name="contestCode" placeholder="contest">
     </div>
   <button class="btn btn-primary btn-lg" type="submit">Submit</button>
   
@@ -98,11 +98,11 @@ for ($x = 0; $x <count($contests,COUNT_NORMAL); $x++) {
     $contest_name= $contests[$x]->name;
     $contest_code= $contests[$x]->code;
    //  var_dump($contest_name);
-    // var_dump($contest_code);  
-     
-   // array_push($arr, $contest_name." (".$contest_code.")");
-    array_push($arr,$contest_code);
-
+    // var_dump($contest_code);
+    array_push($arr, $contest_name." [".$contest_code."]");  
+    array_push($arr,$contest_code); 
+   
+   
 } 
 for ($x = 0; $x <count($contests,COUNT_NORMAL); $x++) {
   $contest_name= $contests[$x]->name;
@@ -111,8 +111,8 @@ for ($x = 0; $x <count($contests,COUNT_NORMAL); $x++) {
   // var_dump($contest_code);
   
    
-  //array_push($arr, $contest_name." (".$contest_code.")");
-  array_push($arr,$contest_code);
+ // array_push($arr, $contest_name." (".$contest_code.")");
+  //array_push($arr,$contest_code);
 
 } 
 

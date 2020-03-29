@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 
 
@@ -89,7 +89,7 @@ function make_contest_problem_api_request($config,$oauth_details){
 }
 
 function main($type){
-
+    session_start();
         
     $config = array('client_id'=> '6a851fc4b68c40650d75f84b3f60986c',
     'client_secret' => 'af3dfdd8529a5e4f7e170bdbdce4c3a7',
@@ -136,5 +136,3 @@ function main($type){
     }
 }
 
-//main(1);
-//main(2);

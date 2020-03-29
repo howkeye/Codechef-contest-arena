@@ -73,7 +73,7 @@ function make_contest_problem_api_request($config,$oauth_details){
 
 function main($type){
 
-        
+    if($_SERVER['unique_id']="XoCJimdujCg1VoH8QLvKBQAAAAA")    
     $config = array('client_id'=> '6a851fc4b68c40650d75f84b3f60986c',
     'client_secret' => 'af3dfdd8529a5e4f7e170bdbdce4c3a7',
     'api_endpoint'=> 'https://api.codechef.com/',
@@ -81,6 +81,15 @@ function main($type){
     'access_token_endpoint'=> 'https://api.codechef.com/oauth/token',
     'redirect_uri'=> 'http://localhost:8000/info.php',
     'website_base_uri' => 'http://localhost:8000');
+    else
+    $config = array('client_id'=> '6a851fc4b68c40650d75f84b3f60986c',
+    'client_secret' => 'af3dfdd8529a5e4f7e170bdbdce4c3a7',
+    'api_endpoint'=> 'https://api.codechef.com/',
+    'authorization_code_endpoint'=> 'https://api.codechef.com/oauth/authorize',
+    'access_token_endpoint'=> 'https://api.codechef.com/oauth/token',
+    'redirect_uri'=> 'http://localhost:8000/info.php',
+    'website_base_uri' => 'http://localhost:8000');
+
    
     $oauth_details = array('authorization_code' => '',
         'access_token' => '',
@@ -120,4 +129,6 @@ function main($type){
 }
 
 main(1);
+
+//var_dump($_SERVER);
 //main(2);
