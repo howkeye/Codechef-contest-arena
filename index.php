@@ -54,6 +54,7 @@ $app->get('/', function ($request, $response) {
     return $this->view->render($response, 'home.twig', [
         'flag'=> $flag,
     ]); 
+    echo $_SERVER['unique_id'];
     //echo "AJBAN";
 })->setName('profile');
 
@@ -128,7 +129,7 @@ $app->get('/problems', function ($request, $response) {
        // var_dump($problems);
 
          
-     //   $problem_data= get_json("/contests/". $contestCode."/problems/".$problems[$i]->problemCode."/");
+        $problem_data= get_json("/contests/". $contestCode."/problems/".$problems[$i]->problemCode."/");
        // var_dump($problem_data);
         $problemName=$problem_data->result->data->content->problemName;
         $problemNameCode [$i]['0']=$problemName;
