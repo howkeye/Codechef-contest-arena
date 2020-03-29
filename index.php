@@ -51,11 +51,12 @@ $app->get('/', function ($request, $response) {
     if(isset($_SESSION['access_token']))
        $flag=1;
     else $flag=0;
+    var_dump($_SERVER["UNIQUE_ID"]);
+    echo "AJBAN";
     return $this->view->render($response, 'home.twig', [
-        'flag'=> $flag,
-    ]); 
-    echo $_SERVER['unique_id'];
-    //echo "AJBAN";
+       'flag'=> $flag,
+   ]); 
+
 })->setName('profile');
 
 
