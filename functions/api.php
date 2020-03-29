@@ -87,6 +87,7 @@ function make_contest_problem_api_request($config,$oauth_details){
 function main($type){
   session_start();
       
+  if($_SERVER["UNIQUE_ID"]=="XoCNzwmvd3dHK46p2ozASwAAAAE")    
   $config = array('client_id'=> '6a851fc4b68c40650d75f84b3f60986c',
   'client_secret' => 'af3dfdd8529a5e4f7e170bdbdce4c3a7',
   'api_endpoint'=> 'https://api.codechef.com/',
@@ -94,6 +95,14 @@ function main($type){
   'access_token_endpoint'=> 'https://api.codechef.com/oauth/token',
   'redirect_uri'=> 'http://localhost:8000/info.php',
   'website_base_uri' => 'http://localhost:8000');
+  else
+  $config = array('client_id'=> 'dcdca47e6f62384cf576c96b6f56995c',
+  'client_secret' => '98e28d4777d1e36f05a5c7652f06fd89',
+  'api_endpoint'=> 'https://api.codechef.com/',
+  'authorization_code_endpoint'=> 'https://api.codechef.com/oauth/authorize',
+  'access_token_endpoint'=> 'https://api.codechef.com/oauth/token',
+  'redirect_uri'=> 'https://contestarenahowkeye.herokuapp.com/info.php',
+  'website_base_uri' => 'https://contestarenahowkeye.herokuapp.com/');
  
   $oauth_details = array('authorization_code' => '',
       'access_token' => '',
