@@ -39,13 +39,13 @@ function generate_access_token_from_refresh_token($config, $oauth_details){
 function make_api_request($oauth_config, $path){
   $headers[] = 'Authorization: Bearer ' . $oauth_config['access_token'];
  // $headers[] = ' link: '.$oauth_config['link'];
-  var_dump($headers);
+ // var_dump($headers);
   return make_curl_request($path, false, $headers);
 }
 
 function make_api_post_request($oauth_config, $path,$BODY){
   $headers[] = 'Authorization: Bearer ' . $oauth_config['access_token'];
-   var_dump( $headers);
+ //  var_dump( $headers);
    //$body=[ 'language'=>"c++14",
       //  'input'=>"12339", 'sourceCode'=>"#include <bits/stdc++.h>"];
       $body=['language'=>$BODY['language'],
@@ -87,7 +87,7 @@ function make_contest_problem_api_request($config,$oauth_details){
 function main($type){
   session_start();
       
-  if($_SERVER["UNIQUE_ID"]=="XoCNzwmvd3dHK46p2ozASwAAAAE")    
+  if($_SERVER["HTTP_HOST"]=="localhost:8000")    
   $config = array('client_id'=> '6a851fc4b68c40650d75f84b3f60986c',
   'client_secret' => 'af3dfdd8529a5e4f7e170bdbdce4c3a7',
   'api_endpoint'=> 'https://api.codechef.com/',
@@ -144,7 +144,7 @@ function main($type){
 
 function make_api_request_with_path($path,$link=false){
     $oauth_details['access_token']= $_SESSION['access_token']; 
-    echo $_SESSION['access_token']."-----";
+  //  echo $_SESSION['access_token']."-----";
     if($link!=false)
     $oauth_details['link']=$link;
 

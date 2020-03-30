@@ -69,10 +69,9 @@ session_start();
 if(isset($_SESSION['access_key'] ) )
 header("Location: ../index.php");
 
-echo "YES";
-//
 
-include '../functions/auth.php';
+
+include '../functions/api.php';
 function make_contest_problem_api_request2(){
     $oauth_details['access_token']= $_SESSION['access_token']; 
     $problem_code = "SALARY";
@@ -90,7 +89,7 @@ if($data_json->status=="error"){
   $data_json= json_decode( make_contest_problem_api_request2()); 
 }
 
-echo " AHGVAB  ".ech.$data_json->status."<br>";
+//echo " AHGVAB  ".ech.$data_json->status."<br>";
 
 $contests=$data_json->result->data->content->contestList;
 $arr= array();
