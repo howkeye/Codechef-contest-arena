@@ -135,9 +135,9 @@ function main($type){
       $oauth_details = generate_access_token_from_refresh_token($config, $oauth_details); 
       $_SESSION['access_token']=$oauth_details['access_token'];
       $_SESSION['refresh_token']=$oauth_details['refresh_token'];
-      echo "access_token ".$_SESSION['access_token'];
-      echo "<br>refresh Token: ";
-      echo $_SESSION['refresh_token'];
+     // echo "access_token ".$_SESSION['access_token'];
+      //echo "<br>refresh Token: ";
+     // echo $_SESSION['refresh_token'];
   }
 }
 
@@ -170,7 +170,7 @@ if($data_json->status!="OK" ){
     //var_dump($data_json)."<br>";
     //echo "error make request for refress token <br>";
     main(0);
-    $data_json= make_api_request_with_path($path); 
+    $data_json= json_decode(make_api_request_with_path($path)); 
     //$t=$t-1;
     //echo "<br>".$data_json->status;
   }

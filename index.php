@@ -124,10 +124,10 @@ $app->get('/problems', function ($request, $response) {
        
     // var_dump($problems);
          
-        $problem_data= get_json("/contests/". $contestCode."/problems/".$problems[$i]->problemCode."/");
-      //  var_dump($problem_data); 
-        $problemName=$problem_data->result->data->content->problemName;
-        $problemNameCode [$i]['0']=$problemName;
+     //  $problem_data= get_json("/contests/". $contestCode."/problems/".$problems[$i]->problemCode."/");
+       // var_dump($problem_data); 
+        //$problemName=$problem_data->result->data->content->problemName;
+      //  $problemNameCode [$i]['0']=$problemName;
         $problemNameCode[$i]['1']=$problems[$i]->problemCode;
         $problemNameCode[$i]['2']=$problems[$i]->accuracy;
         $problemNameCode[$i]['3']=$problems[$i]->successfulSubmissions;
@@ -170,7 +170,7 @@ $app->get('/problem/{conCode}/{probCode}', function ($request, $response, array 
    return $response->withRedirect('/',303);
 
   $problem_data= get_json("/contests/". $args['conCode']."/problems/".$args['probCode']."/"   );
-
+  #var_dump($problem_data);
   $problemStat=$problem_data->result->data->content;  
   //var_dump($problemStat);
  //MarkdownExtra::defaultTransform();  
@@ -182,7 +182,7 @@ $app->get('/problem/{conCode}/{probCode}', function ($request, $response, array 
   $problemStatBody=str_replace("&lt;br /&gt;", "<br>",$problemStatBody );
    
 
- // var_dump($problemStatBody);
+  # var_dump($problemStatBody);
   //$problemStatBody= $problemStat->body;
  
  // $body['language']="ajhgvab";
