@@ -29,7 +29,7 @@
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/aboutus">About Us</a>
+        <a class="nav-link" href="/logout">logout</a>
       </li>
     </ul>   
   </div>
@@ -66,8 +66,8 @@
 
 <?php
 session_start();
-if(isset($_SESSION['access_key'] ) )
-header("Location: ../index.php");
+if(isset($_SESSION['access_token'] )==0 )
+     header("Location: ../");
 
 
 

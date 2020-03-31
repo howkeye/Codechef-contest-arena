@@ -3,7 +3,7 @@ session_start();
 use \Psr\Http\Message\ServerRequestInterface as Request;
 //use \Psr\Http\Message\ResponseInterface as Response;
 use \slim\Http\Response  as Response;
-use Michelf\MarkdownExtra;
+
 
 
 
@@ -46,13 +46,14 @@ $container['view'] = function ($container) {
 
 
 $app->get('/', function ($request, $response) {
-    if(isset($_SESSION['access_token']))
-       $flag=1;
-    else $flag=0;
-    var_dump($_SERVER["HTTP_HOST"]);
+  if(isset($_SESSION['access_token']))
+     $login=1;
+  else $login=0;
 
+    var_dump($_SERVER["HTTP_HOST"]);
+     $wrap= ['login'=>$login];
     return $this->view->render($response, 'home.twig', [
-       'flag'=> $flag,
+       'wrap'=>$wrap,
    ]); 
 
 })->setName('profile');
@@ -77,6 +78,13 @@ $app->get('/logout',function(Request $request, Response $response) {
 });
 
 $app->get('/problems', function ($request, $response) {
+  if(isset($_SESSION['access_token']))
+    $login=1;
+  else $login=0;
+  if($login==0)
+  return $response->withRedirect('../',303);
+  //  echo 
+
     $contestCode=$_GET['contestCode'];
     $contestCode=decode_contest_code($contestCode);
  
@@ -91,7 +99,8 @@ $app->get('/problems', function ($request, $response) {
     if ($isParent==1){
         $wrap= [
             'contest'=> $contest_data->result->data->content->name,
-            'subcontests'=> $contest_data->result->data->content->children
+            'subcontests'=> $contest_data->result->data->content->children,
+            'login'=>$login
          ];
     return $this->view->render($response, 'subcontest.twig', [
         'wrap'=> $wrap, 
@@ -105,18 +114,18 @@ $app->get('/problems', function ($request, $response) {
       echo '<script type="text/javascript">
     alert(" Future/invalid  Contest !! ")
     window.location= "/"</script>';   
-     // var_dump($problems);
+    
     }
  
      for ($i=0;$i<count($problems);$i++){
        
-        echo "<br>/contests/". $contestCode."/problems/".$problems->problemCode;
-        echo "<br><br>";
+     //   echo "<br>/contests/". $contestCode."/problems/".$problems->problemCode;
+       // echo "<br><br>";
        
-
+    // var_dump($problems);
          
         $problem_data= get_json("/contests/". $contestCode."/problems/".$problems[$i]->problemCode."/");
-      
+      //  var_dump($problem_data); 
         $problemName=$problem_data->result->data->content->problemName;
         $problemNameCode [$i]['0']=$problemName;
         $problemNameCode[$i]['1']=$problems[$i]->problemCode;
@@ -153,44 +162,63 @@ $app->get('/problems', function ($request, $response) {
 
 
 $app->get('/problem/{conCode}/{probCode}', function ($request, $response, array $args) {
-    $problem_data= get_json("/contests/". $args['conCode']."/problems/".$args['probCode']."/"   );
 
-   $problemStat=$problem_data->result->data->content;  
+  if(isset($_SESSION['access_token']))
+     $login=1;
+  else $login=0;
+  if($login==0)
+   return $response->withRedirect('/',303);
 
-  $problemStatBody=MarkdownExtra::defaultTransform($problemStat->body);  
+  $problem_data= get_json("/contests/". $args['conCode']."/problems/".$args['probCode']."/"   );
+
+  $problemStat=$problem_data->result->data->content;  
+  //var_dump($problemStat);
+ //MarkdownExtra::defaultTransform();  
+  $Parsedown = new Parsedown();  
+  $problemStatBody= $Parsedown->text($problemStat->body);
+  //var_dump( $problemStatBody);
+  
+  $problemStatBody=str_replace("###", "<h3>",$problemStatBody ); 
+  $problemStatBody=str_replace("&lt;br /&gt;", "<br>",$problemStatBody );
+   
+
+ // var_dump($problemStatBody);
+  //$problemStatBody= $problemStat->body;
  
- $body['language']="ajhgvab";
- $body['language']=$_GET['language'];
- $body['sourceCode']=$_GET['Code'];
- $body['input']=$_GET['input'];
- 
- $runner_output=run_code($body);
+ // $body['language']="ajhgvab";
+  $body['language']=$_GET['language'];
+  $body['sourceCode']=$_GET['Code'];
+  $body['input']=$_GET['input'];
+  
+  $runner_output=run_code($body);
 
 
- $link=json_decode($runner_output);
- $link=$link->result->data->link;
+  $link=json_decode($runner_output);
+  $link=$link->result->data->link;
 
- $url='/ide/status?link='.$link;
- var_dump($url);
- $submission=get_json($url); 
+  $url='/ide/status?link='.$link;
+  //var_dump($url);
+  $submission=get_json($url); 
 
- $submission=$submission->result->data;
- var_dump( $submission  );
+  $submission=$submission->result->data;
+  //var_dump( $submission  );
 
          
          
-         if(isset($_GET['submit']))
-         $output=" Can't Submit Your code feature not implemented";
-         
-         $wrap= [
-            'contest'=> $args['conCode'],
-            'problem'=> $problemStat->problemName,
-            'problemStat'=>$problemStatBody,
-            'output'=>$output,
-            'body'=>$body,
-            'result'=>$submission
-            
-         ];
+  if(isset($_GET['submit']))
+  $output=" Can't Submit Your code feature not implemented";
+  
+  $wrap= [
+     'contest'=> $args['conCode'],
+     'problem'=> $problemStat->problemName,
+     'problemStat'=>$problemStatBody,
+     'output'=>$output,
+     'body'=>$body,
+     'result'=>$submission,
+     'login'=>$login,
+     'languages'=>$problemStat->languagesSupported,
+     
+  ];
 
 
  return $this->view->render($response, 'problem.twig', [

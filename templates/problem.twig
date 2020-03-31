@@ -2,19 +2,18 @@
 
 {% extends "base.twig" %}
 {% block content %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
-
-<!-- Start simple MDE -->
-<script>
-    var simplemde = new SimpleMDE({ 
-        element: document.getElementById("markdown") 
-    });
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
- 
+<!--<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> 
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js">-->
+
+
+ </script>
  <div class="cantainer container p-3 my-6 border" >
  <center><h3><b> {{ wrap.problem  }}</b> </h3> </center>
 <div class="markdown">
@@ -37,14 +36,20 @@
     <label for="language"> Language:</label> 
       <select class="custom-select" name="language" style="width:20%">
       <option selected="{{ wrap.body.language }}">c++14</option>
+      {% for lang in wrap.languages %}
+        {% if lang == wrap.body.language %}
+          <option  selected="{{ wrap.body.language }} ">{{ lang }}  </option>
+        {% else %}
+          <option >{{ lang }}  </option>
+        {% endif %}
+
+       {% endfor %}
      <br>
     </select>
 
       <label for="Code"></label>
 
-      <textarea class="form-control" name="Code" id="Code" rows="15" spellcheck="true">
-      {{ wrap.body.sourceCode }}
-      
+      <textarea class="form-control" name="Code" id="Code" rows="15" spellcheck="true">{{ wrap.body.sourceCode }}
       </textarea>
       <br>
       <div class="row">
