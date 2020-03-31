@@ -170,7 +170,7 @@ $app->get('/problem/{conCode}/{probCode}', function ($request, $response, array 
    return $response->withRedirect('/',303);
 
   $problem_data= get_json("/contests/". $args['conCode']."/problems/".$args['probCode']."/"   );
-  #var_dump($problem_data);
+  //var_dump($problem_data);
   $problemStat=$problem_data->result->data->content;  
   //var_dump($problemStat);
  //MarkdownExtra::defaultTransform();  
