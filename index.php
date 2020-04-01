@@ -191,17 +191,18 @@ $app->get('/problem/{conCode}/{probCode}', function ($request, $response, array 
   $body['input']=$_GET['input'];
   
   $runner_output=run_code($body);
-
+  var_dump($runner_output);
 
   $link=json_decode($runner_output);
   $link=$link->result->data->link;
+  var_dump($link);
 
   $url='/ide/status?link='.$link;
   //var_dump($url);
   $submission=get_json($url); 
-
+  var_dump( $submission  );
   $submission=$submission->result->data;
-  //var_dump( $submission  );
+ 
 
          
          
