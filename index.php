@@ -43,7 +43,8 @@ $container['view'] = function ($container) {
 
     return $view;
 };
-
+$settings = $container['settings'];
+$settings['timeout'] = 600;
 
 $app->get('/', function ($request, $response) {
   if(isset($_SESSION['access_token']))
@@ -208,11 +209,11 @@ $app->get('/problem/{conCode}/{probCode}', function ($request, $response, array 
     $submission=get_json($url); 
   
     $submission=$submission->result->data;
-    $t=60;
+    $t=25;
     while($t!=0 && $submission->output=="" && $submission->cmpinfo==""){
      
      /*
-     It waits upto 60 sec to chech whether code is compiled or not.*/
+     It waits upto 25 sec to chech whether code is compiled or not.*/
       sleep(1);
       $t=$t-1;
 
