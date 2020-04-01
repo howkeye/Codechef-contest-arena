@@ -37,14 +37,14 @@
     <label for="language"> Language:</label> 
       <select class="custom-select" name="language" style="width:20%">
       <option selected="c++14">c++14</option>
-   {#   {% for lang in wrap.languages %}
+      {% for lang in wrap.languages %}
         {% if lang == wrap.body.language %}
           <option  selected="{{ wrap.body.language }} ">{{ lang }}  </option>
         {% else %}
           <option >{{ lang }}  </option>
         {% endif %} 
 
-       {% endfor %}  #}
+       {% endfor %}  
      <br>
     </select>
 
