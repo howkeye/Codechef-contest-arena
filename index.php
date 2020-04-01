@@ -50,7 +50,7 @@ $app->get('/', function ($request, $response) {
      $login=1;
   else $login=0;
 
-    var_dump($_SERVER["HTTP_HOST"]);
+   // var_dump($_SERVER["HTTP_HOST"]);
      $wrap= ['login'=>$login];
     return $this->view->render($response, 'home.twig', [
        'wrap'=>$wrap,
