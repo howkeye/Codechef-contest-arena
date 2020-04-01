@@ -198,15 +198,16 @@ $app->get('/problem/{conCode}/{probCode}', function ($request, $response, array 
   $link=json_decode($runner_output);
   $link=$link->result->data->link;
   var_dump($link);
+  $link="ba90164";
 
   $url='/ide/status?link='.$link;
-  //var_dump($url);
+  var_dump($url);
   $submission=get_json($url); 
   var_dump( $submission  );
   $submission=$submission->result->data;
  
 
-         
+    echo "<br>".$_SESSION['access_token']."    ".$url."</br>";     
          
   if(isset($_GET['submit']))
   $output=" Can't Submit Your code feature not implemented";
