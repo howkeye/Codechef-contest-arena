@@ -71,27 +71,28 @@
         
 
         <div class="col-md-5">
-        {% if wrap.result.cmpinfo  != "" %}
-            <div class="alert alert-dismissible alert-danger">
-      
+       
+           
+                 avhbjnk
+            <div class="alert alert-dismissible alert-info">
             <h4 class="alert-heading">Compliation error !</h4>
             <p class="mb-0"> {{ wrap.result.cmpinfo|raw }} ahgva </p>
             </div>
-         {% endif %}
-        {% if wrap.result.stderr  != "" %}
+           agvhbjn
+      
             <div class="alert alert-dismissible alert-info">
       
             <h4 class="alert-heading">stderr error!!</h4>
             <p class="mb-0"> {{ wrap.result.stderr|raw }} ahgva </p>
             </div>
-         {% endif %}
-         {% if wrap.result.output  != "" %}
+         
+              aihsvhb
 
               <div class="alert alert-dismissible alert-success">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Well done,compiled successfully!!! output: <br></strong>   {{ wrap.result.output|raw }} 
               </div>   
-         {% endif %}  
+        
 
         
          {% if wrap.result.output  == "" %}
