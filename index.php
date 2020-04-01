@@ -189,6 +189,8 @@ $app->get('/problem/{conCode}/{probCode}', function ($request, $response, array 
   $body['language']=$_GET['language'];
   $body['sourceCode']=$_GET['Code'];
   $body['input']=$_GET['input'];
+
+  var_dump($body);
   
   $runner_output=run_code($body);
   var_dump($runner_output);
