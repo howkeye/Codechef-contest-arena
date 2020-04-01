@@ -209,7 +209,7 @@ $app->get('/problem/{conCode}/{probCode}', function ($request, $response, array 
     $submission=get_json($url); 
   
     $submission=$submission->result->data;
-    $t=60;
+    $t=25;
     echo "<br>".date('h:i:s') . "<br>";
     while($t!=0 && $submission->output=="" && $submission->cmpinfo==""){
      
