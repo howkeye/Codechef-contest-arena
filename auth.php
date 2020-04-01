@@ -79,7 +79,7 @@ function main($type){
     'api_endpoint'=> 'https://api.codechef.com/',
     'authorization_code_endpoint'=> 'https://api.codechef.com/oauth/authorize',
     'access_token_endpoint'=> 'https://api.codechef.com/oauth/token',
-    'redirect_uri'=> 'http://localhost:8000/info.php',
+    'redirect_uri'=> 'http://localhost:8000/auth.php',
     'website_base_uri' => 'http://localhost:8000');
     else
     $config = array('client_id'=> 'dcdca47e6f62384cf576c96b6f56995c',
@@ -87,7 +87,7 @@ function main($type){
     'api_endpoint'=> 'https://api.codechef.com/',
     'authorization_code_endpoint'=> 'https://api.codechef.com/oauth/authorize',
     'access_token_endpoint'=> 'https://api.codechef.com/oauth/token',
-    'redirect_uri'=> 'https://contestarenahowkeye.herokuapp.com/info.php',
+    'redirect_uri'=> 'https://contestarenahowkeye.herokuapp.com/auth.php',
     'website_base_uri' => 'https://contestarenahowkeye.herokuapp.com/');
 
    

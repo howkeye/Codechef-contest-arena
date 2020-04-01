@@ -61,7 +61,7 @@ $app->get('/', function ($request, $response) {
 
 $app->get('/auth', function (Request $request, Response $response, $args) {
    
-    $response = $response->withRedirect('/info.php',303);
+    $response = $response->withRedirect('/auth.php',303);
     return $response;
  
 
