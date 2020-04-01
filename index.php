@@ -205,8 +205,8 @@ $app->get('/problem/{conCode}/{probCode}', function ($request, $response, array 
   $submission=get_json($url); 
   var_dump( $submission  );
   $submission=$submission->result->data;
- 
-
+    echo "<br>";
+    var_dump($_SESSION['access_token']);
     echo "<br>".$_SESSION['access_token']."    ".$url."</br>";     
          
   if(isset($_GET['submit']))
