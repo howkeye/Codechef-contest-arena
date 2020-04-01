@@ -1,4 +1,6 @@
 <?php
+
+////of no use
 session_start();
 
 function take_user_to_codechef_permissions_page($config){
