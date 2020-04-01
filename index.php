@@ -212,7 +212,7 @@ $app->get('/problem/{conCode}/{probCode}', function ($request, $response, array 
     while($t!=0 && $submission->output=="" && $submission->cmpinfo==""){
      
      /*
-     It waits upto 60 sec to chech whether code is compiled or not.
+     It waits upto 60 sec to chech whether code is compiled or not.*/
       sleep(1);
       $t=$t-1;
 
