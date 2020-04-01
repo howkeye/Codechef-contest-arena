@@ -190,25 +190,36 @@ $app->get('/problem/{conCode}/{probCode}', function ($request, $response, array 
   $body['sourceCode']=$_GET['Code'];
   $body['input']=$_GET['input'];
 
-  var_dump($body);
+  //var_dump($body);
   
   $runner_output=run_code($body);
-  var_dump($runner_output);
+  //var_dump($runner_output);
 
   $link=json_decode($runner_output);
   $link=$link->result->data->link;
-  var_dump($link);
-  //$link="ba90164";
+  
+
+  
 
   $url='/ide/status?link='.$link;
  
-  $submission=get_json($url); 
-  var_dump($url);
-  var_dump( $submission  );
-  $submission=$submission->result->data;
-    echo "<br>";
-    var_dump($_SESSION['access_token']);
-    echo "<br>".$_SESSION['access_token']."    ".$url."</br>";     
+  
+  if(isset($_GET['Code'])){
+    $submission=get_json($url); 
+  
+    $submission=$submission->result->data;
+    $t=60;
+    while($t!=0 && $submission->output=="" && $submission->cmpinfo==""){
+     
+     /*
+     It waits upto 60 sec to chech whether code is compiled or not.
+      sleep(1);
+      $t=$t-1;
+
+    }
+    
+  }
+         
          
   if(isset($_GET['submit']))
   $output=" Can't Submit Your code feature not implemented";
